@@ -1,1 +1,45 @@
+#include <stdio.h>//operação de entrada e saída
 
+int main() {
+    FILE *arquivo;//armazenar os caracteres
+    char caractere;//armazenar os caracteres
+
+    
+    arquivo = fopen("arq.txt", "w");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    printf("Digite os caracteres (Digite '0' para encerrar):\n");
+
+    
+    while (1) {
+        scanf(" %c", &caractere);
+        if (caractere == '0') {
+            break;
+        }
+        fputc(caractere, arquivo);
+    }
+
+   
+    fclose(arquivo);
+
+    arquivo = fopen("arq.txt", "r");
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return 1;
+    }
+
+    printf("ConteÃºdo do arquivo:\n");
+
+    while ((caractere = fgetc(arquivo)) != EOF) {
+        printf("%c", caractere);
+    }
+
+    fclose(arquivo);
+
+    return 0;
+}
